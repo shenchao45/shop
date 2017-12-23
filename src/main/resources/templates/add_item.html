@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>添加商品</h2>
+    <form action="/item/add" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>商品名称</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>商品价格</td>
+                <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td>商品图片</td>
+                <td><input type="file" name="file"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="提交">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

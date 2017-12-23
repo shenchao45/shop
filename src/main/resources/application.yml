@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+  datasource:
+    url: jdbc:mysql:///test?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: com.wzh.shop.util.CustomMysqlDialect

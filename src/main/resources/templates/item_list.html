@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <style>
+        .title {
+            width: 150px;
+            margin: 20px auto;
+            color: red;
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
+
+        div {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        div .item_price {
+            font-size: 25px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1 class="title">商品展示</h1>
+<div id="app" class="container-fluid">
+    <div class="row">
+        <div v-for="item of items">
+            <div class="col-md-4">
+                <img v-bind:src="item.image">
+                <div class="item_name">{{'商品名称：'+item.name}}</div>
+                <div class="item_price">{{'商品价格：￥'+item.price}}</div>
+                <button type="button" class="btn btn-success" @click="buy(item)">购买</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/vue-resource.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: []
+        },
+        mounted: function () {
+            this.$http.get('/item/list').then(function (res) {
+                this.items = res.body
+            })
+        },
+        methods: {
+            buy: function (item) {
+                this.$http.post('/order/buy', {"itemId": item.id}, {emulateJSON: true}).then(function (res) {
+                    if (res.bodyText == "success") {
+                        alert("购买成功")
+                    } else {
+                        alert("购买失败")
+                    }
+                })
+            }
+        }
+    })
+</script>
+</html>
