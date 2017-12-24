@@ -1,76 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Expand, contract, animate forms with jQuery wihtout leaving the page" />
+    <meta name="keywords" content="expand, form, css3, jquery, animate, width, height, adapt, unobtrusive javascript"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <link rel="stylesheet" href="/static/css/verify.css">
-    <title>Title</title>
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/js/verify.min.js"></script>
-    <style>
-        #aa{
-            margin-top: 300px;
-            position: absolute;
-        }
-    </style>
+    <script type="text/javascript">
+        Cufon.replace('h1',{ textShadow: '1px 1px #fff'});
+        Cufon.replace('h2',{ textShadow: '1px 1px #fff'});
+        Cufon.replace('h3',{ textShadow: '1px 1px #000'});
+        Cufon.replace('.back');
+    </script>
 </head>
 <body>
-<h2>用户登录</h2>
-<div id="aa">
-    <div id="mpanel1" >
+<div class="wrapper">
+    <div class="content">
+        <div id="form_wrapper" class="form_wrapper">
+            <form action="/user/login" method="post" id="form11" class="login active">
+                <h3>Login</h3>
+                <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" />
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password" name="password" />
+                </div>
+                <div id="mpanel2" >
+                    <label>验证码: </label>
+                </div>
+                <div class="bottom">
+                    <input id="check-btn" class="verify-btn" type="submit" value="Login"></input>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+        <div class="clear"></div>
     </div>
 </div>
 
-<!--&lt;!&ndash;确定的按钮，id名称在初始化时使用&ndash;&gt;-->
-<!--<button id="check-btn" class="verify-btn">确定</button>-->
 
-<form action="/user/login" method="post" id="form11">
-    <table>
-        <tr>
-            <td>用户名</td>
-            <td><input type="text" name="username"></td>
-        </tr>
-        <tr>
-            <td>密码</td>
-            <td><input type="password" name="password"></td>
-        </tr>
-        <!--<tr>-->
-            <!--<td colspan="2">-->
-                <!--<input type="submit" value="登录">-->
-            <!--</td>-->
-        <!--</tr>-->
-    </table>
-</form>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/verify.min.js"></script>
+<!-- The JavaScript -->
 <script>
-    $('#mpanel1').slideVerify({
-        type : 2,
-        mode : 'pop',
-        vOffset : 5,
-        vSpace : 5,
-        explain : '向右滑动完成验证自动登录',
-        imgUrl : '/static/images/',
-        imgName : ['1.jpg', '2.jpg'],
-        imgSize : {
-            width: '240px',
-            height: '240px',
-        },
-        blockSize : {
-            width: '40px',
-            height: '40px',
-        },
-        barSize : {
-            width: '400px',
-            height : '40px',
-        },
+    $('#mpanel2').codeVerify({
+        type : 1,
+        width : '400px',
+        height : '50px',
+        fontSize : '30px',
+        codeLength : 6,
+        btnId : 'check-btn',
         ready : function() {
         },
         success : function() {
-            alert('验证匹配！自动登录！');
+            // alert('验证匹配！');
             document.forms[0].submit()
         },
         error : function() {
             alert('验证码不匹配！');
         }
-
     });
 </script>
 </body>

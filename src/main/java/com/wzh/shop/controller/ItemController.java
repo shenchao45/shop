@@ -3,7 +3,6 @@ package com.wzh.shop.controller;
 import com.wzh.shop.entity.Item;
 import com.wzh.shop.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
